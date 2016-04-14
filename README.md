@@ -1,102 +1,28 @@
-Yii 2 Basic Project Template
-============================
+去[官网][1]下载basic；
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-basic/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-basic/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
-
-DIRECTORY STRUCTURE
--------------------
-
-      assets/             contains assets definition
-      commands/           contains console commands (controllers)
-      config/             contains application configurations
-      controllers/        contains Web controller classes
-      mail/               contains view files for e-mails
-      models/             contains model classes
-      runtime/            contains files generated during runtime
-      tests/              contains various tests for the basic application
-      vendor/             contains dependent 3rd-party packages
-      views/              contains view files for the Web application
-      web/                contains the entry script and Web resources
-
-
-
-REQUIREMENTS
-------------
-
-The minimum requirement by this project template that your Web server supports PHP 5.4.0.
-
-
-INSTALLATION
-------------
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
+##新的目录结构
 ```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
+basic/                  应用根目录
+    composer.json       Composer 配置文件, 描述包信息
+    config/             包含应用配置及其它配置
+        console.php     控制台应用配置信息
+        web.php         Web 应用配置信息
+    commands/           包含控制台命令类
+    controllers/        包含控制器类
+    models/             包含模型类
+    runtime/            包含 Yii 在运行时生成的文件，例如日志和缓存文件
+    vendor/             包含已经安装的 Composer 包，包括 Yii 框架自身
+    views/              包含视图文件
+    web/                Web 应用根目录，包含 Web 入口文件
+        assets/         包含 Yii 发布的资源文件（javascript 和 css）
+        index.php       应用入口文件
+    yii              
 ```
 
-You can then access the application through the following URL:
+##MVC
+Yii 实现了[模型-视图-控制器 (MVC)](http://wikipedia.org/wiki/Model-view-controller)设计模式，这点在上述目录结构中也得以体现。 `models` 目录包含了所有[模型类](http://www.getyii.com/doc-2.0/guide/structure-models.html)，`views` 目录包含了所有[视图脚本](http://www.getyii.com/doc-2.0/guide/structure-views.html)，`controllers` 目录包含了所有[控制器类](http://www.getyii.com/doc-2.0/guide/structure-controllers.html)。
 
-~~~
-http://localhost/basic/web/
-~~~
+[1]:http://www.yiichina.com/download
 
-
-### Install via Composer
-
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
-
-You can then install this project template using the following command:
-
-~~~
-php composer.phar global require "fxp/composer-asset-plugin:~1.1.1"
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-CONFIGURATION
--------------
-
-### Database
-
-Edit the file `config/db.php` with real data, for example:
-
-```php
-return [
-    'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '1234',
-    'charset' => 'utf8',
-];
-```
-
-**NOTES:**
-- Yii won't create the database for you, this has to be done manually before you can access it.
-- Check and edit the other files in the `config/` directory to customize your application as required.
-- Refer to the README in the `tests` directory for information specific to basic application tests.
+##补充
+* 表达式 `Yii::$app` 代表[应用](http://www.getyii.com/doc-2.0/guide/structure-applications.html)实例，它是一个全局可访问的单例。同时它也是一个[服务定位器](http://www.getyii.com/doc-2.0/guide/concept-service-locator.html)，能提供 `request`，`response`，`db` 等等特定功能的组件
